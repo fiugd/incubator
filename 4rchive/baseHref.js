@@ -1,11 +1,4 @@
-//show-preview
-
-import { consoleHelper, importCSS, fetchTEXT, logJSON } from '../.tools/misc.mjs';
-import '../shared.styl';
-consoleHelper();
-
 import parse5 from 'https://cdn.skypack.dev/parse5';
-import pretty from 'https://cdn.skypack.dev/pretty';
 
 function addBaseES6(html, href="../../", target="_blank"){
 	try {
@@ -13,7 +6,7 @@ function addBaseES6(html, href="../../", target="_blank"){
 			? ''
 			: `<base href="${href}" target="${target}">`;
 		const document = parse5.parse(baseHref + html);
-		return pretty(parse5.serialize(document));
+		return parse5.serialize(document);
 	} catch(e){
 		return html;
 	}
@@ -43,8 +36,8 @@ function addBase(html, href="../../", target="_blank"){
 }
 
 (async () => {
-	const exampleHTMLUrl = '../.templates/avif.html';
-	const exampleHTML = await fetchTEXT(exampleHTMLUrl);
-	console.info(addBase(exampleHTML));
+	const exampleHTMLUrl = 'https://beta.fiug.dev/crosshj/fiug-incubator/7ool/open.folder.html';
+	const exampleHTML = await fetch(exampleHTMLUrl).then(x => x.text());
+	console.log(addBase(exampleHTML));
 
 })();

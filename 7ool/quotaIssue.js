@@ -68,6 +68,10 @@ function formatBytes(bytes) {
 
 })();
 
+function indexDBSize(){
+	//see https://gist.github.com/tralves/9e5de2bd9f582007a52708d7d4209865
+}
+
 
 (async () => {
 	const exampleFnText = (await (await fetch('./quotaIssue.js')).text());
