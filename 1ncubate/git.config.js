@@ -1,27 +1,6 @@
 import ini from 'https://cdn.skypack.dev/ini';
 
-/*
-class GitConfig {
-	constructor(){}
-	set(property){}
-}
-
-const setConfig = () => {
-	const configUrl = 'https://beta.fiug.dev/crosshj/fiug-beta/.git/config';
-
-	const gitConfig = ini.encode(configText);
-	const configText = await fetch(configUrl).then(x=>x.text());
-};
-
-const getConfig = () => {
-	const configUrl = 'https://beta.fiug.dev/crosshj/fiug-beta/.git/config';
-	const configText = await fetch(configUrl).then(x=>x.text());
-	const gitConfig = ini.parse(configText);
-};
-*/
-
-
-var ConfigProxy = (config) => {
+const ConfigProxy = (config) => {
 	let proxy;
 	const set =  (target, key, value, receiver) => {
 		//console.log(`setting ${wrapper.url}/${key} !`);
