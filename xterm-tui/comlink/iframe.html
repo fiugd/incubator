@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<style>
+	body { color: #0ca; border: 1px solid; margin: 0; padding: 1em;}
+</style>
+
+<script type="module">
+
+	import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
+
+	const saySo = (a, b) => {
+			const pre = document.createElement('pre');
+			pre.innerHTML = `
+I am an iframe.
+I added: ${a} and ${b}
+			`.trim();
+			document.body.append(pre);
+	};
+
+	const add = (a, b)=> {
+		saySo(a,b);
+		return a + b;
+	}
+	Comlink.expose(add, Comlink.windowEndpoint(self.parent));
+
+</script>

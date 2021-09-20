@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<style>
+	iframe { border: 0; height: 6em; }
+	body, pre { color: #bbb; font-family: arial;}
+</style>
+
+
+<body>
+	<br>
+
+	<p>worker running through "node" can interact with terminal because terminal is exposed to worker using comlink</p>
+
+	<p>page running in preview can be updated using messages passed through comlink vs page being tore down and reconstructed each time</p>
+
+	<br>
+
+	<iframe src="iframe.html"></iframe>
+
+</body>
+
+
+
+<script type="module">
+	import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
+
+	const saySo = (a, b, answer) => {
+		const pre = document.createElement('pre');
+		pre.innerHTML = `
+iframe helped me (parent):
+${a} + ${b} = ${answer}
+		`;
+		document.body.append(pre);
+	};
+
+	async function main() {
+		const ifr = document.querySelector("iframe");
+		await new Promise((resolve) => (ifr.onload = resolve));
+
+		const iframeAdd = Comlink.wrap(Comlink.windowEndpoint(ifr.contentWindow));
+
+		const answer = await iframeAdd(1, 3);
+		saySo(1,3,answer);
+	}
+
+	main();
+</script>
