@@ -1,6 +1,6 @@
 In short, I was not completely successful running an assembly in browser which was made to build other assemblies in the browser.
 
-I was able to load a dll and run a command from it, but I was unable to get the procedures I needed to run.
+I was able to load a dll and run a command from it, but I was unable to get the compile to run using that dll.
 
 my attempt: https://github.com/crosshj/fiug-plugins/blob/main/.templates/cs.html
 
