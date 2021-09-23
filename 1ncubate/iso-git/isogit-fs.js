@@ -11,9 +11,9 @@ import LightningFS from 'https://cdn.skypack.dev/@isomorphic-git/lightning-fs';
 	fs.promises.rmdir(path)
 	fs.promises.stat(path[, options])
 	fs.promises.lstat(path[, options])
-	fs.promises.readlink(path[, options]) (optional ¹)
-	fs.promises.symlink(target, path[, type]) (optional ¹)
-	fs.promises.chmod(path, mode) (optional ²)
+	fs.promises.readlink(path[, options]) (optional Â¹)
+	fs.promises.symlink(target, path[, type]) (optional Â¹)
+	fs.promises.chmod(path, mode) (optional Â²)
 */
 
 class FileSystem {
