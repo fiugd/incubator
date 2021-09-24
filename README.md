@@ -1,6 +1,6 @@
 # fiug incubator
 
-![image](https://user-images.githubusercontent.com/1816471/134600397-29968491-06a6-49f6-bb07-d595404264b4.png)
+![image](https://user-images.githubusercontent.com/1816471/134601207-9bdf5d0d-2fec-4ae7-b4ab-13cb203cdd43.png)
 
 when I have an idea for [fiug.dev](https://fiug.dev), I use this repo to explore the idea.  
 
