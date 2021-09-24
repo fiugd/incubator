@@ -1,7 +1,7 @@
 # fiug incubator
 
-![image](https://user-images.githubusercontent.com/1816471/134601207-9bdf5d0d-2fec-4ae7-b4ab-13cb203cdd43.png)
-> incubator image created with [night cafe](https://creator.nightcafe.studio/creation/5i8ZEDWlcAnJDs7gJJp7) with some [pixlr](https://pixlr.com/e/) help.
+![image](https://user-images.githubusercontent.com/1816471/134601563-d3e39a66-dee0-4aca-a729-e4fc04920fd1.png)
+> image created with [night cafe](https://creator.nightcafe.studio/creation/5i8ZEDWlcAnJDs7gJJp7) with some [pixlr](https://pixlr.com/e/) help.
 
 when I have an idea for [fiug.dev](https://fiug.dev), I use this repo to explore the idea.  
 
