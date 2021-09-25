@@ -117,28 +117,32 @@ const {
 } = ansiEscapes;
 
 class Spinner {
-	constructor({
-		name = 'point',
-		color = '#aff',
-		doneColor = '#aff',
-		message = 'loading',
-		doneMsg = 'done',
-		stdOut
-	} = {}){
+	constructor(args={}){
+		const name = args.name || 'point';
 		const { interval, frames } = spinners[name];
-		this.color = color;
-		this.doneColor = doneColor;
 		this.frames = frames;
 		this.interval = interval;
-		this.message = message;
-		this.doneMsg = doneMsg;
-		this.stdOut = stdOut;
+
+		this.color = args.color || '#aff';
+		this.doneColor = args.doneColor || '#aff';
+		this.message = args.message || 'loading';
+		this.doneMsg = args.doneMsg || 'done';
+		this.stdOut = args.stdOut;
 	}
+
 	async until(unresolved){
-		const { interval, color, frames, message, stdOut, doneColor, doneMsg } = this;
+		const {
+			interval, color, frames, message, stdOut, doneColor, doneMsg
+		} = this;
 		let done;
 		let i = 0;
-		stdOut(cursorHide + message + ': ' + cursorSavePosition + eraseDown);
+
+		stdOut(
+			cursorHide +
+			cursorSavePosition +
+			message + ': ' +
+			eraseDown
+		);
 
 		const drawFrame = () => {
 			i++;
@@ -147,6 +151,7 @@ class Spinner {
 			stdOut(
 				eraseDown +
 				cursorRestorePosition +
+				message + ': ' +
 				chalk.hex(color)(frame)
 			);
 		};
@@ -155,7 +160,14 @@ class Spinner {
 
 		unresolved.then(() => {
 			clearInterval(timer);
-			stdOut(cursorRestorePosition + chalk.hex(doneColor)(doneMsg) + cursorShow);
+			stdOut(
+				cursorRestorePosition +
+				eraseLine + 
+				message + ': ' +
+				chalk.hex(doneColor)(doneMsg) +
+				cursorShow
+				//cursorPrevLine
+			);
 			done();
 		})
 
