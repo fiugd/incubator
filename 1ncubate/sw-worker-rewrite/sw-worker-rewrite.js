@@ -5,15 +5,27 @@ typescript transpiler:
 babel: https://github.com/crosshj/fiug-plugins/blob/main/.templates/jsx.html
 */
 
-import chalk from 'https://cdn.skypack.dev/chalk';
+import "https://unpkg.com/@babel/standalone@7.15.7/babel.min.js";
+
+const src = 'console.log("hello")'
+
+var output = Babel.transform(src, {
+	//plugins: ['importMap', 'console', 'processExit'],
+	//sourceType: "module"
+});
+
+console.log(output.code)
+
+/*
+import chalk from 'chalk';
 chalk.enabled = true;
 chalk.level = 3;
 
 const grey = x => console.log(chalk.hex('#ccc')(x));
 
-import importMap from "https://beta.fiug.dev/importmap.importmap" assert { type: "json" };
+import importMap from "/~/importmap.json" assert { type: "json" };
 console.log(JSON.stringify(importMap))
-import Babel from 'https://cdn.skypack.dev/@babel/standalone';
+
 
 import ansiEscapes from 'https://cdn.skypack.dev/ansi-escapes';
 const {clearScreen} = ansiEscapes;
@@ -204,3 +216,4 @@ var output = Babel.transform(exampleSrc, {
 });
 
 console.log(NODE_PRE + output.code + NODE_POST)
+*/
