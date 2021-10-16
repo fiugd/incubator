@@ -1,5 +1,7 @@
 import DiffMatchPatch from 'https://cdn.skypack.dev/diff-match-patch';
-import chalk from 'https://cdn.skypack.dev/chalk';
+import ansiEscapes from 'https://cdn.skypack.dev/ansi-escapes';
+import chalk from 'chalk';
+
 const levels = {
 	disabled: 0,
 	basic16: 1,
@@ -8,6 +10,9 @@ const levels = {
 }
 chalk.enabled = true;
 chalk.level = levels.trueColor;
+
+const {clearScreen} = ansiEscapes;
+console.log(clearScreen);
 
 const logJSON = obj => console.log(JSON.stringify(obj, null, 2));
 

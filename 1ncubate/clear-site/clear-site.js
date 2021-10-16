@@ -5,6 +5,9 @@ import ini from 'https://cdn.skypack.dev/ini';
 //import localforage from "https://beta.fiug.dev/shared/vendor/localforage.min.js"
 
 import localforage from 'https://cdn.skypack.dev/localforage';
+import ansiEscapes from 'https://cdn.skypack.dev/ansi-escapes';
+import chalk from "chalk";
+
 function getStores(){
 	const files = localforage
 		.createInstance({
@@ -14,20 +17,15 @@ function getStores(){
 	return { files };
 };
 
-import ansiEscapes from 'https://cdn.skypack.dev/ansi-escapes';
-const {clearScreen} = ansiEscapes;
-
-
-import chalk from "chalk";
 chalk.enabled = true;
 chalk.level = 3;
-
 const grey = x => console.log(chalk.hex('#ccc')(x));
 const blue = x => console.log(chalk.hex('#adf')(x));
 const yellow = x => console.log(chalk.hex('#fd0')(x));
 
-
+const {clearScreen} = ansiEscapes;
 console.log(clearScreen);
+
 
 yellow('The point of this exercise:')
 grey(`
@@ -54,20 +52,10 @@ const keys = await stores.files.keys();
 yellow('\n' + 'Some files:');
 grey([...keys.slice(0,5), '...'].join('\n'));
 
+const cwd = self.location.toString()
+	.split(self.location.host+'/!/')[1]
+	.split('/')
+	.slice(0,-1)
+	.join('/');
 yellow('\n' + 'Current Working Dir:');
 grey(cwd);
-
-const configSrc = {
-	user: {
-		name: 'crosshj',
-		email: 'github@crosshj.com',
-		password: '***'
-	}
-};
-await stores.files.setItem('/.git/config', ini.encode(configSrc));
-const gitConfig = await stores.files.getItem('/.git/config');
-//const configParsed = ini.parse(gitConfig);
-
-yellow('\n' + 'Git Config:');
-//grey(JSON.stringify(configParsed, null, 2));
-grey(gitConfig);
