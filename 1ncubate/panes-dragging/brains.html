@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<meta name="color-scheme" content="dark light">
+	</head>
+
+	<style>
+		:root { color-scheme: light dark; }
+		html { font-family: arial; color: #555;}
+		body { margin: 0; user-select: none; }
+
+		#page {
+			display: grid;
+			width: 100%;
+			height: 500px;
+		}
+		#page > header {
+			grid-area: head;
+			background-color: #3cf;
+		}
+
+		#page > nav {
+			grid-area: nav;
+			background-color: #f79;
+			display: block;
+		}
+
+		#page > main {
+			grid-area: main;
+			background-color: #fc3;
+		}
+
+		#page > footer {
+			grid-area: foot;
+			background-color: #8cffa0;
+		}
+
+		#page > * { display: flex; justify-content: center; align-items: center; }
+
+		#sep1 { grid-area: sep1; }
+		#sep2 { grid-area: sep2; }
+		#sep3 { grid-area: sep3; }
+
+		.vertical, .horizontal { background: black; }
+		.vertical:hover, .horizontal:hover { background: #77f; }
+
+		ul {
+			list-style: none;
+			padding-left: 0;
+		}
+		li { padding: 0.25em 0.75em; margin: 0.4em; }
+		li:hover { background: pink; }
+
+		pre { color: white; }
+		pre.auto { color: #5bf}
+	</style>
+
+	<body>
+		<section id="page">
+			<header>grid layout brains tester</header>
+			<nav>
+				<ul>
+					<li>one.doc</li>
+					<li>dos.png</li>
+					<li>tres.jpg</li>
+				</ul>
+			</nav>
+			<main>nothing open</main>
+			<footer>status</footer>
+			<div id="sep1" class="horizontal"></div>
+			<div id="sep2" class="vertical"></div>
+			<div id="sep3" class="horizontal"></div>
+		</section>
+<pre class="auto"></pre>
+<pre>
+  This is a slightly different approach from ./iframe-drag.html
+  Here, we use grid template areas vs grid areas
+  Also, there is less focus here (currently) with loading iframes
+  based off <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas">MDN about the same</a>
+
+  TODO:
+	- current system is not flexible with different layouts
+		- try moving footer to the bottom
+		- try splitting main pane into two side-by-side
+	- generate dom based on layout input
+	- drag spacer to resize (if allowed)
+	- drop an item to split pane (if allowed) (see iframe-drag.html)
+	- close a pane (if allowed )
+
+</pre>
+	</body>
+
+	<script type="module">
+		import { getCSS } from './brains.js';
+		const layout = {
+			head: '4vh',
+			sep1: '5px',
+			r2: {
+				nav: '20vw',
+				sep2: '5px',
+				// main: '',
+				c1: {
+					main: '',
+					sep3: '5px',
+					foot: '3vh'
+				},
+			},
+			// sep4: '5px',
+			// foot: '3vh'
+		};
+		const page = document.getElementById('page');
+		const pre = document.querySelector('pre.auto');
+		const css = getCSS(layout);
+		page.style.gridTemplateAreas = css['grid-template-areas']
+			.map(x => `"${x}"`).join('\n');
+		page.style.gridTemplateColumns = css['grid-template-columns'];
+		page.style.gridTemplateRows = css['grid-template-rows'];
+
+		pre.innerText = JSON.stringify(css, null, 2)
+			.slice(1,-1)
+			.replace(/\"/g, '') + '\n';
+	</script>
+</html>
