@@ -1,5 +1,7 @@
 import JsZip from 'https://cdn.skypack.dev/@progress/jszip-esm';
 import fileSaver from 'https://cdn.skypack.dev/file-saver';
+// import JsZip from 'jsZip';
+// import fileSaver from 'fileSaver';
 
 const isPreview = typeof window !== 'undefined';
 if(isPreview){
