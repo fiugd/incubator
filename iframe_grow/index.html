@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="color-scheme" content="dark">
+		<link rel="stylesheet" href="index.css">
+	</head>
+
+	<style>
+		iframe { border: 0px; width: 100%; }
+	</style>
+
+	<body>
+		<iframe src="./embed.html"></iframe>
+	</body>
+
+	<script>
+		const embed = document.querySelector('iframe');
+		window.addEventListener('message', (e) => {
+			try {
+				const { height } = e.data;
+				embed.style.height = height + 'px';
+			} catch(e){}
+		}, false);
+	</script>
+</html>

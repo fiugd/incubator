@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="color-scheme" content="dark">
+		<link rel="stylesheet" href="index.css">
+	</head>
+
+	<style>
+		html {
+			padding: 0;
+		}
+		body, pre {
+			font-family: sans-serif;
+		}
+		body {
+			height: min-content;
+			margin: 0;
+			border-bottom: 0.25em dashed buttonface;
+			background: canvas;
+		}
+		.accordion div {
+			padding: 1em;
+		}
+		.accordion input[name=panel] {
+			display: none;
+		}
+		.accordion label {
+			display: block;
+			padding: 1em;
+			cursor: pointer;
+			background: buttonface;
+		}
+		div + div label {
+			margin-top: -1em;
+		}
+		[name=panel] ~ div
+		{
+			height: 0px;
+			overflow: hidden;
+			padding: 0 1.5em;
+			background: buttonface;
+		}
+		[name=panel]:checked ~ div {
+			height: auto;
+		}
+		div pre {
+			display: inline-block;
+			border: 1px solid;
+			border-radius: 5px;
+			padding: 0.75em;
+			white-space: pre-wrap;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		div pre:empty:not(:focus):before {
+			content: "Enter Some Text";
+		}
+		div > * {
+			margin-top: 0;
+		}
+	</style>
+
+	<body>
+		<div class="accordion">
+			<div>
+				<input type="checkbox" name="panel" id="panel-1">
+				<label for="panel-1">Panel 1</label>
+				<div>
+					<p class="accordion__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto possimus at a cum saepe molestias modi illo facere ducimus voluptatibus praesentium deleniti fugiat ab error quia sit perspiciatis velit necessitatibus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+			<div>
+				<input type="checkbox" name="panel" id="panel-2">
+				<label for="panel-2">Panel 2</label>
+				<div>
+					<p class="accordion__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto possimus at a cum saepe molestias modi illo facere ducimus voluptatibus praesentium deleniti fugiat ab error quia sit perspiciatis velit necessitatibus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente eligendi nulla illo culpa ab in at adipisci eveniet id itaque maxime soluta recusandae doloribus laboriosam dignissimos est aut cupiditate delectus.</p>
+				</div>
+			</div>
+			<div>
+				<input type="checkbox" name="panel" id="panel-3">
+				<label for="panel-3">Panel 3</label>
+				<div>
+					<p class="accordion__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto possimus at a cum saepe molestias modi illo facere ducimus voluptatibus praesentium deleniti fugiat ab error quia sit perspiciatis velit necessitatibus.Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</div>
+			</div>
+			<div>
+				<input type="checkbox" name="panel" id="panel-4">
+				<label for="panel-4">Panel 4</label>
+				<div>
+					<p class="accordion__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto possimus at a cum saepe molestias modi illo facere ducimus voluptatibus praesentium deleniti fugiat ab error quia sit perspiciatis velit necessitatibus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda odio provident ullam culpa rem tempora voluptatem inventore facere adipisci doloribus dolorum ad maxime itaque quasi animi aliquid voluptates rerum expedita? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui culpa amet neque nostrum cumque eaque corrupti ad accusantium? Consectetur reiciendis ad earum aspernatur at quibusdam cupiditate rerum ipsam consequatur suscipit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab rem explicabo exercitationem unde harum? Iste nobis quae animi illum laborum incidunt hic illo ad repellat repudiandae et alias facere magni.</p>
+				</div>
+			</div>
+			<div>
+				<input type="checkbox" name="panel" id="panel-5">
+				<label for="panel-5">Panel 5</label>
+				<div>
+					<pre contenteditable name="panel" id="panel-5"></pre>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		new ResizeObserver(() => {
+			const height = document.body.offsetHeight;
+			window.parent.postMessage({ height }, '*');
+			//console.log("embed requests a height change: " + height);
+		}).observe(document.body);
+	</script>
+</html>
